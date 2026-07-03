@@ -2,7 +2,8 @@ package ar.edu.utn.ba.ddsi.climalert.services;
 
 import ar.edu.utn.ba.ddsi.climalert.config.RestWeatherProperties;
 import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaActual;
-import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaDTO;
+import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaRequestDTO;
+import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaResponseDTO;
 import ar.edu.utn.ba.ddsi.climalert.dtos.Localidad;
 import ar.edu.utn.ba.ddsi.climalert.entities.Clima;
 import ar.edu.utn.ba.ddsi.climalert.repositories.ClimaRepository;
@@ -28,12 +29,12 @@ public class ClimaServiceImpl implements  ClimaService{
 
     public void getClima() {
         URI uri =
-                UriComponentsBuilder.fromUriString(propiedades.getUrl())
+                UriComponentsBuilder.fromUriString(propiedades.getUrl() + "/current.json")
                         .queryParam("key", propiedades.getKey())
                         .queryParam("q", propiedades.getLocation())
                         .build()
                         .toUri();
-        ClimaDTO cuerpo = restTemplate.getForObject(uri, ClimaDTO.class);
+        ClimaRequestDTO cuerpo = restTemplate.getForObject(uri, ClimaRequestDTO.class);
         if (cuerpo != null && cuerpo.getClimaActual() != null) {
             Clima clima = new Clima(null,cuerpo.getClimaActual().getTemperatura(),cuerpo.getClimaActual().getHumedad(), LocalDateTime.now(),cuerpo.getLocation().getCiudad(),cuerpo.getLocation().getPais());
             climaRepository.save(clima);
@@ -42,14 +43,18 @@ public class ClimaServiceImpl implements  ClimaService{
         }
     }
 
-    public List<ClimaDTO> findAll(){
+    public List<ClimaResponseDTO> findAll(){
         return climaRepository.findAll().stream().map(this::toDto).toList();
     }
 
-    public ClimaDTO toDto(Clima clima){
+    public ClimaResponseDTO toDto(Clima clima){
         Localidad localidad = new Localidad(clima.getCiudad(),clima.getPais());
         ClimaActual actual = new ClimaActual(clima.getTemperatura(),clima.getHumedad());
 
-        return new ClimaDTO(localidad, actual);
+        return new ClimaResponseDTO(clima.getId(),localidad, actual, clima.getFechaGeneracion());
+    }
+
+    public void evaluarClima(){
+
     }
 }

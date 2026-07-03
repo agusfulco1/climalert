@@ -1,5 +1,6 @@
 package ar.edu.utn.ba.ddsi.climalert.controllers;
-import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaDTO;
+import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaRequestDTO;
+import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaResponseDTO;
 import ar.edu.utn.ba.ddsi.climalert.services.ClimaService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class ClimaTestController {
     }
 
     @GetMapping
-    public List<ClimaDTO> getAll() {
+    public List<ClimaResponseDTO> getAll() {
         return climaService.findAll();
     }
 }
