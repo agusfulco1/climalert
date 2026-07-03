@@ -17,7 +17,4 @@ public class ClimaActual {
 
     @JsonProperty("humidity")
     private Double humedad;
-
-    @JsonProperty("condition")
-    private Condicion condicion;
 }
