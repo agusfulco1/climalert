@@ -28,6 +28,10 @@ public class InMemoryClimaRepository implements ClimaRepository {
         } else {
             //TODO: Manejo de errores
         }
+    }
 
+    @Override
+    public List<Clima> findAll(){
+        return new ArrayList<>(climas);
     }
 }
