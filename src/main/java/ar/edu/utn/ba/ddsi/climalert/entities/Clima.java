@@ -11,5 +11,4 @@ public class Clima {
     private Double humedad;
     private LocalDateTime fechaGeneracion;
     private String condicion;
-
 }
