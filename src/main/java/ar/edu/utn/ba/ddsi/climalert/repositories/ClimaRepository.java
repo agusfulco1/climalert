@@ -12,4 +12,6 @@ public interface ClimaRepository {
     void save(Clima clima);
 
     List<Clima> findAll();
+
+    Clima findLast();
 }

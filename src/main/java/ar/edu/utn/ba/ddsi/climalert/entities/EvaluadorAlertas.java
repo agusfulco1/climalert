@@ -3,10 +3,10 @@ package ar.edu.utn.ba.ddsi.climalert.entities;
 import lombok.Data;
 
 @Data
-public abstract class ReglaClimatica {
+public abstract class EvaluadorAlertas {
     private TipoAlerta tipoAlerta;
 
-    public ReglaClimatica(TipoAlerta tipoAlerta) {
+    public EvaluadorAlertas(TipoAlerta tipoAlerta) {
         this.tipoAlerta = tipoAlerta;
     }
 

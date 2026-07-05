@@ -1,6 +1,8 @@
 package ar.edu.utn.ba.ddsi.climalert.services;
 
+import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaRequestDTO;
 import ar.edu.utn.ba.ddsi.climalert.dtos.ClimaResponseDTO;
+import ar.edu.utn.ba.ddsi.climalert.entities.Clima;
 
 import java.util.List;
 
@@ -9,5 +11,5 @@ public interface ClimaService {
 
     void getClima();
 
-    void evaluarClima();
+    Clima obtenerUltimoClima();
 }
