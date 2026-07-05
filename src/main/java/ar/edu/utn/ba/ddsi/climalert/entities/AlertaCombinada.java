@@ -11,6 +11,6 @@ public class AlertaCombinada extends EvaluadorAlertas {
 
     @Override
     public Boolean evaluar(Clima clima){
-        return clima.getTemperatura() > -10 && clima.getHumedad() > 0;
+        return clima.getTemperatura() > 35 && clima.getHumedad() > 60;
     }
 }
